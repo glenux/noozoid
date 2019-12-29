@@ -12,7 +12,26 @@ Type the following line in your favorite terminal:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Running noozoid
+
+In your terminal:
+
+    $ noozoid [gui]
+
+### Keyboard control
+
+| Key | Description |
+|---|--|
+| h | Navigate to parent |
+| l | Navigate to child |
+| k | Navigate to previous sibling |
+| j | Navigate to next sibling |
+| r | Navigate to tree root |
+| c | Create node |
+| d | Delete selected node |
+| v | Toggle node |
+| ? | Show this help |
+| q | Exit program |
 
 
 ## Development
