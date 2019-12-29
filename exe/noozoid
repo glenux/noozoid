@@ -7,103 +7,11 @@
 #
 # Press `h` key when running for help.
 
-require 'nokogiri'
-require 'curses'
+require 'noozoid/cli'
 
-Curses.init_screen
-Curses.curs_set(0) # invisible cursor
+Noozoid::Cli.start(ARGV)
 
-
-begin
-  # Building a static window
-  win1 = Curses::Window.new(Curses.lines / 2 - 1, Curses.cols / 2 - 1, 0, 0)
-  win1.box("|", "-")
-  win1.setpos(2, 2)
-  win1.addstr("Hello")
-  win1.refresh
-
-  # In this window, there will be an animation
-  win2 = Curses::Window.new(Curses.lines / 2 - 1, Curses.cols / 2 - 1, 
-                            Curses.lines / 2, Curses.cols / 2)
-  win2.box("|", "-")
-  win2.refresh
-  2.upto(win2.maxx - 3) do |i|
-    win2.setpos(win2.maxy / 2, i)
-    win2 << "*"
-    win2.refresh
-    sleep 0.05 
-  end
-
-  # Clearing windows each in turn
-  sleep 0.5 
-  win1.clear
-  win1.refresh
-  win1.close
-  sleep 0.5
-  win2.clear
-  win2.refresh
-  win2.close
-  sleep 0.5
-
-rescue
-  Curses.close_screen
-end
-exit 1
-
-# Individual node type
-class Node
-
-  protected
-
-  attr_accessor :parent
-
-  public
-
-  attr_accessor :name, :open
-  attr_reader :children, :parent
-
-  def initialize(name = 'untitled')
-    @name = name
-    @children = []
-    @parent = nil
-    @open = true
-  end
-
-  def []=(child)
-    @children.push(child)
-    child.parent = self
-  end
-
-  def [](i)
-    @children[i]
-  end
-
-  def toggle!
-    @open = !@open
-  end
-
-  def >>(n = 1)
-    return nil if @parent.nil?
-
-    idx = @parent.children.index(self)
-    return nil if idx.nil?
-
-    @parent[(idx + n) % @parent.children.length]
-  end
-
-  def <<(n = 1)
-    self >> -n
-  end
-
-  def remove
-    @parent.children.delete(self) unless @parent.nil?
-  end
-
-  def children?
-    !@children.empty?
-  end
-
-end
+exit 0
 
 # Proper output of a tree
 module PrettyPrint
@@ -118,19 +26,6 @@ module PrettyPrint
     end
   end
 end
-
-KEYS = {
-  nav_parent:   'h',
-  nav_child:    'l',
-  nav_next:     'j',
-  nav_previous: 'k',
-  nav_root:     'r',
-  node_create:  'a',
-  node_delete:  'd',
-  node_toggle:  'v',
-  main_quit:    'q',
-  main_help:    '?'
-}
 
 def print_help
   puts '= Commands ='
@@ -153,22 +48,6 @@ def print_help
   read_command
 end
 
-def read_mm(file_path)
-  xml = Nokogiri::XML(IO.read(file_path))
-  map_root = xml.xpath('/map/node')[0]
-  root = Node.new(map_root['TEXT'])
-  read_mm_subtree(root, map_root)
-  root
-end
-
-def read_mm_subtree(node, xml)
-  xml.xpath('node').each do |xml_child|
-    node_child = Node.new(xml_child['TEXT'])
-    node[] = node_child
-    read_mm_subtree(node_child, xml_child)
-  end
-end
-
 def read_command
   system("stty raw -echo") #=> Raw mode, no echo
   char = STDIN.getc
@@ -179,8 +58,6 @@ end
 if ARGV.empty?
   print 'Mindmap name: '
   current = root = Node.new(STDIN.gets.chomp)
-else
-  current = root = read_mm(ARGV[0])
 end
 
 loop do
