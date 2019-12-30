@@ -1,14 +1,8 @@
+# frozen_string_literal: true
 
 module Noozoid
   # Individual node type
   class Node
-
-    protected
-
-    attr_accessor :parent
-
-    public
-
     attr_accessor :name, :open
     attr_reader :children, :parent
 
@@ -24,34 +18,33 @@ module Noozoid
       child.parent = self
     end
 
-    def [](i)
-      @children[i]
+    def [](index)
+      @children[index]
     end
 
     def toggle!
       @open = !@open
     end
 
-    def >>(n = 1)
+    def >>(num = 1)
       return nil if @parent.nil?
 
       idx = @parent.children.index(self)
       return nil if idx.nil?
 
-      @parent[(idx + n) % @parent.children.length]
+      @parent[(idx + num) % @parent.children.length]
     end
 
-    def <<(n = 1)
-      self >> -n
+    def <<(num = 1)
+      self >> -num
     end
 
     def remove
-      @parent.children.delete(self) unless @parent.nil?
+      @parent&.children&.delete(self)
     end
 
     def children?
       !@children.empty?
     end
-
   end
 end

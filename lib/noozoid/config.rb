@@ -7,22 +7,26 @@ module Noozoid
       [:nav_next,    'Navigate to next sibling'],
       [:nav_previous,    'Navigate to previous sibling'],
       [:nav_root,    'Navigate to tree root'],
+      [:nav_none,    ''],
       [:node_create, 'Create node'],
       [:node_delete, 'Delete selected node'],
       [:node_toggle, 'Toggle node'],
+      [:node_none,   ''],
       [:main_help,   'Show this help'],
       [:main_quit,   'Exit program']
     ]
 
     DEFAULT_KEYS = {
-      nav_parent:   'h',
-      nav_child:    'l',
-      nav_next:     'j',
-      nav_previous: 'k',
+      nav_parent:   'LEFT',
+      nav_child:    'RIGHT',
+      nav_next:     'DOWN',
+      nav_previous: 'UP',
       nav_root:     'r',
+      nav_none:     '',
       node_create:  'a',
       node_delete:  'd',
       node_toggle:  'v',
+      node_none:    '',
       main_quit:    'q',
       main_help:    '?'
     }
