@@ -5,7 +5,7 @@ require_relative '../version'
 module Noozoid
   module Gui
     # Main widget (full screen)
-    class MainWidget
+    class MainView
       HEADER_HELP_STR = "noozoid #{Noozoid::VERSION} " \
         '~ Use the arrow keys to navigate, press ? for help'
 
@@ -49,6 +49,8 @@ module Noozoid
         loop do
           key = Curses.getch
           case key
+          when Curses::Key::RESIZE
+            @win.refresh
           when Curses::Key::LEFT
             @win.setpos(10, 1)
             @win.addstr('LEFT')
@@ -59,7 +61,7 @@ module Noozoid
             Curses.setpos(10, 1)
             Curses.addstr('Page Dn')
           when '?'
-            subwin = HelpWidget.new(self)
+            subwin = HelpView.new(self)
             subwin.wait
           when 'q'
             break

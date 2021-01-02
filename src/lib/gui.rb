@@ -1,24 +1,12 @@
 # frozen_string_literal: true
 
-require 'curses'
-
-module Noozoid
-  # Gui
-  module Gui
-  end
-end
-
-require_relative 'widgets/help_widget'
-require_relative 'widgets/main_widget'
-require_relative 'node'
-
 module Noozoid
   # Gui
   module Gui
     # app
     class App
       def initialize
-        @tree = Node.new('untitled')
+        @tree = Noozoid::Models::Node.new('untitled')
       end
 
       def run
@@ -31,11 +19,16 @@ module Noozoid
         # Curses.start_color
         Curses.init_screen
         Curses.refresh
-        @main_window = MainWidget.new(self)
+
+        # attach models to views
+        @main_window = MainView.new(self)
         @main_window.draw
         @main_window.wait
-      rescue StandardError
+
+      rescue StandardError => e
         Curses.close_screen
+        warn e.message unless e.nil?
+        warn e.backtrace unless e.nil?
       end
     end
 

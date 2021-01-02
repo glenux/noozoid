@@ -1,8 +1,4 @@
 
-require 'thor'
-
-require_relative 'gui'
-
 module Noozoid
   class Cli < Thor
 

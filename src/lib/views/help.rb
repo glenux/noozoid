@@ -2,20 +2,27 @@
 
 require 'curses'
 require_relative '../config'
+require_relative '../utils/auto_ajust'
 
 module Noozoid
   module Gui
-    # HelpWidget
-    class HelpWidget
+    # HelpView
+    class HelpView
       TITLE_STRING = 'Noozoid help'
       QUIT_STRING = 'Press q to close'
 
       def initialize(parent)
         @parent = parent
-        @win = Curses::Window.new(
-          Curses.lines / 2, Curses.cols / 2,
-          Curses.lines / 4, Curses.cols / 4
-        )
+        @display = false
+      end
+
+      def show
+        lines_size = Utils::AutoAdjust.set(Curses.lines / 2, 10, 20)
+        lines_top = (Curses.lines - lines_size) / 2
+        cols_size = Utils::AutoAdjust.set(Curses.cols / 2, 20, 60)
+        cols_left = (Curses.cols - cols_size) / 2
+
+        @win = Curses::Window.new(lines_size, cols_size, lines_top, cols_left)
         @win.box('|', '-')
         @win.setpos(0, @win.maxx / 4)
         @win.attron(Curses::A_REVERSE)
@@ -23,6 +30,14 @@ module Noozoid
         @win.attroff(Curses::A_REVERSE)
         fill_content
         @win.refresh
+        @display = true
+      end
+
+      def hide
+        @win.clear
+        @win.refresh
+        @win.close
+        @display = false
       end
 
       def fill_content
@@ -42,11 +57,9 @@ module Noozoid
       def wait
         loop do
           key = Curses.getch
+          @win.refresh if key == Curses::Key::RESIZE
           break if key == 'q'
         end
-        @win.clear
-        @win.refresh
-        @win.close
       end
     end
   end

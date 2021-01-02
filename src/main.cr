@@ -7,25 +7,11 @@
 #
 # Press `h` key when running for help.
 
-require 'noozoid/cli'
+require 'noozoid'
 
 Noozoid::Cli.start(ARGV)
 
 exit 0
-
-# Proper output of a tree
-module PrettyPrint
-  def self.tree(subtree, current, indent = 0)
-    print ' ' * indent
-    print subtree == current ? '> ' : '- '
-    print subtree.name + "\n"
-
-    return unless subtree.open
-    subtree.children.each do |child|
-      tree(child, current, indent + 2)
-    end
-  end
-end
 
 def print_help
   puts '= Commands ='
