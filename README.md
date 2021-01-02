@@ -27,7 +27,7 @@ In your terminal:
 
     $ _build/noozoid
 
-### Keyboard control
+### Keyboard control (vim-like)
 
 | Key | Description |
 |---|--|
@@ -37,6 +37,7 @@ In your terminal:
 | j | Navigate to next sibling |
 | r | Navigate to tree root |
 | c | Create node |
+| i | Edit node |
 | d | Delete selected node |
 | v | Toggle node |
 | ? | Show this help |
