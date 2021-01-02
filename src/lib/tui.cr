@@ -16,7 +16,7 @@ module Noozoid
       NCurses.start_color
 
       # define background color
-      pair = NCurses::ColorPair.new(1).init(NCurses::Color::RED, NCurses::Color::BLACK)
+      pair = NCurses::ColorPair.new(1).init(NCurses::Color::WHITE, NCurses::Color::BLACK)
       NCurses.bkgd(pair)
       NCurses.curs_set(0)
 
@@ -30,16 +30,46 @@ module Noozoid
       NCurses.move(x:0, y: 2)
       NCurses.addstr(NCurses.curses_version)
 
-
-      # attach models to views
-      #@main_window = MainView.new(self)
-      #@main_window.draw
-      #@main_window.wait
-
       NCurses.notimeout(true)
 
       x = NCurses.maxx / 2
       y = NCurses.maxy / 2
+
+      # NCurses.box(v: '|', h: '=')
+
+      routes = {
+        'q'.ord => -> do
+          NCurses.endwin  
+          exit 0 
+          return nil
+        end,
+
+        NCurses::KeyCode::ESC => -> do
+          NCurses.endwin 
+          exit 0 
+          return nil
+        end,
+
+        NCurses::KeyCode::LEFT => -> do
+          x -= 1
+          x = 0 if x < 0
+        end,
+
+        NCurses::KeyCode::RIGHT => -> do
+          x += 1
+          x = NCurses.maxx - 1 if x >= NCurses.maxx
+        end,
+
+        NCurses::KeyCode::UP => -> do
+          y -= 1
+          y = 0 if y < 0
+        end,
+
+        NCurses::KeyCode::DOWN => -> do
+          y += 1
+          y = NCurses.maxy - 2 if y >= NCurses.maxy - 1
+        end
+      }
 
       loop do
         NCurses.erase
@@ -48,36 +78,9 @@ module Noozoid
         NCurses.refresh
 
         key = NCurses.getch
-
-        case key
-        when 'q', NCurses::KeyCode::ESC
-          break
-
-        when NCurses::KeyCode::LEFT
-          x -= 1
-          x = 0 if x < 0
-
-        when NCurses::KeyCode::RIGHT
-          x += 1
-          x = NCurses.maxx - 1 if x >= NCurses.maxx
-
-        when NCurses::KeyCode::UP
-          y -= 1
-          y = 0 if y < 0
-
-        when NCurses::KeyCode::DOWN
-          y += 1
-          y = NCurses.maxy - 2 if y >= NCurses.maxy - 1
-         
-        end
+        routes[key].call if routes.keys.includes? key
+        # ctx = { a: 1 }
       end
-
-      NCurses.endwin
-
-      #rescue StandardError => e
-      #Curses.close_screen
-      #warn e.message unless e.nil?
-      #warn e.backtrace unless e.nil?
     end
   end
 
