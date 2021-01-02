@@ -1,5 +1,9 @@
 # Noozoid
 
+![Build](https://github.com/glenux/draft-noozoid/workflows/Build/badge.svg?branch=master)
+[![GitHub license](https://img.shields.io/github/license/glenux/draft-noozoid.svg)](https://github.com/glenux/draft-noozoid/blob/master/LICENSE.txt)
+[![Donate on patreon](https://img.shields.io/badge/patreon-donate-orange.svg)](https://patreon.com/glenux)
+
 A terminal-based mindmap editor for geeks.
 
 The name of the project comes from the Greek words _νους_ (mind) and  _ζούδι_ (small animal).
@@ -41,7 +45,11 @@ In your terminal:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/glenux/noozoid.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/glenux/draft-noozoid>.
+
+## License
+
+Noozoid is Copyright © 2021 Glenn ROLLAND. It is free software, and may be redistributed under the terms specified in the LICENSE.txt file.
 
 
 
