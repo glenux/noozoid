@@ -1,19 +1,21 @@
 name: noozoid
 version: 0.1.0
 
-# authors:
-#   - name <email@example.com>
+authors:
+  - Glenn Y. Rolland <opensource@glenux.net>
 
 # description: |
 #   Short description of ttymindmap
 
-# dependencies:
-#   pg:
-#     github: will/crystal-pg
-#     version: "~> 0.5"
+dependencies:
+  clim:
+    github: at-grandpa/clim
+    version: 0.14.0
+  ncurses:
+    github: agatan/ncurses.cr
 
 # development_dependencies:
 #   webmock:
 #     github: manastech/webmock.cr
 
-# license: MIT
+license: LGPL-3
