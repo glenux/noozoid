@@ -38,7 +38,8 @@ In your terminal:
 | r | Navigate to tree root |
 | c | Create node |
 | i | Edit node |
-| d | Delete selected node |
+| d | Delete/Cut selected node |
+| p | Paste node as a child of selected node |
 | v | Toggle node |
 | ? | Show this help |
 | q | Exit program |
