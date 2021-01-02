@@ -29,6 +29,8 @@ In your terminal:
 
 ### Keyboard control (vim-like)
 
+#### NORMAL mode
+
 | Key | Description |
 |---|--|
 | h | Navigate to parent |
@@ -37,17 +39,35 @@ In your terminal:
 | j | Navigate to next sibling |
 | r | Navigate to tree root |
 | c | Create node |
-| i | Edit node |
+| i | Enter EDIT mode for current node |
 | d | Delete/Cut selected node |
 | p | Paste node as a child of selected node |
 | v | Toggle node |
 | ? | Show this help |
-| q | Exit program |
+| : | Enter COMMAND mode |
 
+
+### COMMAND mode
+
+| Command| Description |
+|---|--|
+| w | Write file |
+| e | Load file |
+| q | Exit program |
+| ESC | Go to normal mode |
+
+### EDIT mode
+
+| Command| Description |
+|---|--|
+| ESC | Go to normal mode |
+
+Any other key will be written as the content selected node.
 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at <https://github.com/glenux/draft-noozoid>.
+
 
 ## License
 
