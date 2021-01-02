@@ -1,0 +1,10 @@
+version: 2.0
+shards:
+  clim:
+    git: https://github.com/at-grandpa/clim.git
+    version: 0.14.0
+
+  ncurses:
+    git: https://github.com/agatan/ncurses.cr.git
+    version: 0.1.0+git.commit.a667a848b336da831dd7c69f793d660538fcc0de
+
