@@ -26,7 +26,7 @@ Build the project
 
 In your terminal:
 
-    $ _build/noozoid
+    $ bin/noozoid
 
 ### Keyboard control (vim-like)
 

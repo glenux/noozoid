@@ -1,8 +1,13 @@
 name: noozoid
 version: 0.1.0
 
+
 authors:
   - Glenn Y. Rolland <opensource@glenux.net>
+
+targets:
+  noozoid:
+    main: src/main.cr
 
 # description: |
 #   Short description of ttymindmap

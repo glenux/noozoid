@@ -1,5 +1,6 @@
 /.bundle/
 /_build
+/bin
 /lib
 /.yardoc
 /_yardoc/

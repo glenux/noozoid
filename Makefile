@@ -1,12 +1,16 @@
 
 PROGNAME=noozoid
-BUILD_DIR=_build
+BUILD_DIR=bin
 
 all: help
 
+prepare: ## install dependencies
+	mkdir -p $(BUILD_DIR)
+	shards install
+
 build: ## build binary
 	mkdir -p $(BUILD_DIR)
-	crystal build -o $(BUILD_DIR)/$(PROGNAME) src/main.cr
+	shards build
 
 test: ## test binary
 	crystal spec
