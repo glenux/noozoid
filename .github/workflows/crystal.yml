@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install libncurses5
+        run: sudo apt-get install libncurses5-dev
+
       - name: Install dependencies
         run: shards install
 
