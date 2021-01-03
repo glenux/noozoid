@@ -1,10 +1,11 @@
+---
 name: Build
 
-on:
+"on":
   push:
-    branches: [ master ]
+    branches: ["master"]
   pull_request:
-    branches: [ master ]
+    branches: ["master"]
 
 jobs:
   build:
@@ -14,10 +15,13 @@ jobs:
       image: crystallang/crystal
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: shards install
-    - name: Run build
-      run: make build
-    #- name: Run tests
-    #  run: crystal spec
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: shards install
+
+      - name: Run tests
+        run: make test
+
+      - name: Run build
+        run: make build
