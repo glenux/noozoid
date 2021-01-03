@@ -1,6 +1,6 @@
 # Noozoid
 
-![Build](https://github.com/glenux/draft-noozoid/workflows/Build/badge.svg?branch=master)
+![Build](https://github.com/glenux/draft-noozoid/workflows/build/badge.svg?branch=master)
 [![GitHub license](https://img.shields.io/github/license/glenux/draft-noozoid.svg)](https://github.com/glenux/draft-noozoid/blob/master/LICENSE.txt)
 [![Donate on patreon](https://img.shields.io/badge/patreon-donate-orange.svg)](https://patreon.com/glenux)
 
