@@ -1,4 +1,5 @@
-# <img src="doc/noozoid.svg" height="48" style="display: inline-block; margin: 0 auto; vertical-align: middle;" alt="Noozoid-Logo" /> Noozoid
+# <img src="doc/noozoid.svg" width="50%" style="display: block; margin: 0 auto;" alt="Noozoid" />
+
 
 ![Build](https://github.com/glenux/draft-noozoid/workflows/build/badge.svg?branch=master)
 [![GitHub license](https://img.shields.io/github/license/glenux/draft-noozoid.svg)](https://github.com/glenux/draft-noozoid/blob/master/LICENSE.txt)
