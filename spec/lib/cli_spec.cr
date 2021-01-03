@@ -1,6 +1,6 @@
 
 require "spec"
-require "../src/lib/cli"
+require "../../src/lib/cli"
 
 describe Noozoid::Cli do
   describe "#start" do
