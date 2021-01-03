@@ -4,9 +4,12 @@ BUILD_DIR=_build
 
 all: help
 
-build: # ## build binary
+build: ## build binary
 	mkdir -p $(BUILD_DIR)
 	crystal build -o $(BUILD_DIR)/$(PROGNAME) src/main.cr
+
+test: ## test binary
+	crystal spec
 
 help: ## print this help
 	@echo "Usage: make <target>"
