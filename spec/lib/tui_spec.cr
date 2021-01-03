@@ -1,6 +1,5 @@
 
-require "spec"
-require "../../src/lib/tui"
+require "../spec_helper"
 
 describe Noozoid::Tui do
   describe "#run" do
