@@ -1,3 +1,6 @@
+:rotating_light: **The project has moved to a self-hosted git instance!**<br/>
+:rotating_light: **Please use the new URL for an up-to-date version:** https://code.apps.glenux.net/glenux/noozoid
+
 # <img src="doc/noozoid.svg" width="50%" style="display: block; margin: 0 auto;" alt="Noozoid" />
 
 
